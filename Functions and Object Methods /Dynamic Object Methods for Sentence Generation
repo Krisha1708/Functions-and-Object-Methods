@@ -1,0 +1,38 @@
+const sentenceBuilder = {
+  subject: "",  // default empty string
+  verb: "",     // default empty string
+  object: "",   // default empty string
+  
+  // Method to build the sentence
+  buildSentence: function() {
+    return (this.subject && this.verb && this.object) 
+      ? this.subject + " " + this.verb + " " + this.object 
+      : "Incomplete sentence"; // If any property is missing
+  },
+
+  // Method to update a property dynamically
+  updateProperty: function(property, value) {
+    // Check if the property exists in the object
+    if (this.hasOwnProperty(property)) {
+      this[property] = value; // Update the property
+    } else {
+      return "Invalid property"; // Return message if the property doesn't exist
+    }
+  }
+};
+
+// Example Usage:
+
+// Initial sentence (empty)
+console.log(sentenceBuilder.buildSentence()); // Output: "Incomplete sentence"
+
+// Update the subject, verb, and object dynamically
+sentenceBuilder.updateProperty('subject', 'The cat');
+sentenceBuilder.updateProperty('verb', 'is running');
+sentenceBuilder.updateProperty('object', 'on the roof');
+
+// After updates, build the sentence
+console.log(sentenceBuilder.buildSentence()); // Output: "The cat is running on the roof"
+
+// Try updating an invalid property
+console.log(sentenceBuilder.updateProperty('invalidProperty', 'value')); // Output: "Invalid property"
