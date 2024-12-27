@@ -1,0 +1,35 @@
+function sumNumbers(...args) {
+  // The sumNumbers function accepts any number of arguments and sums them up
+  return args.reduce((total, num) => total + num, 0); 
+}
+
+function collectNumbers() {
+  let numbers = []; // Array to store valid numbers
+
+  while (true) {
+    // Prompt the user to enter a number or type 'done' to finish
+    let userInput = prompt("Enter a number (or type 'done' to finish):");
+
+    // Check if the user typed 'done' to stop collecting numbers
+    if (userInput.toLowerCase() === 'done') {
+      break;
+    }
+
+    // Try to convert the input to a number
+    let number = parseFloat(userInput);
+
+    // Check if the input is a valid number
+    if (!isNaN(number)) {
+      numbers.push(number); // If valid, add the number to the array
+    } else {
+      alert("That's not a valid number. Please try again.");
+    }
+  }
+
+  // Pass the valid numbers to sumNumbers using the spread operator
+  let total = sumNumbers(...numbers);
+  alert(`The total sum is: ${total}`);
+}
+
+// Start the number collection process
+collectNumbers();
